@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Meilin Tech | Notícias, Artigos e Tecnologia</title>
+    <meta name="description" content="Fique por dentro das últimas novidades do mundo da tecnologia, dicas de desenvolvimento e as melhores práticas com a equipe da Meilin Tech.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .blog-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, rgba(0, 153, 255, 0.1), rgba(157, 80, 187, 0.1));
+            text-align: center;
+        }
+        .blog-hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+        }
+        .featured-post {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .featured-img {
+            height: 100%;
+            min-height: 300px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .featured-img i { font-size: 6rem; color: rgba(255, 255, 255, 0.2); }
+        .featured-content { padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .featured-content h2 { font-size: 2rem; margin-bottom: 20px; text-transform: none; font-family: 'Inter', sans-serif; }
+        
+        @media (max-width: 768px) {
+            .featured-post { grid-template-columns: 1fr; }
+            .featured-content { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    <img src="../assets/img/logo.png" alt="Meilin Tech Logo">
+                    <span>MEILIN <strong>TECH</strong></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#sobre">Sobre</a></li>
+                <li><a href="../index.html#servicos">Serviços</a></li>
+                <li><a href="index.html" class="active">Blog</a></li>
+                <li><a href="../index.html#contato" class="btn-primary">Contato</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <h1 data-aos="fade-down">Portal de <span class="gradient-text">Conhecimento</span></h1>
+                <p data-aos="fade-up">Explorando as fronteiras da tecnologia e inovação.</p>
+            </div>
+        </section>
+
+        <section class="blog-main container">
+            <div class="blog-filters" data-aos="fade-up">
+                <button class="filter-btn active">Todos</button>
+                <button class="filter-btn">Tecnologia</button>
+                <button class="filter-btn">Dicas</button>
+                <button class="filter-btn">Segurança</button>
+                <button class="filter-btn">Notícias</button>
+            </div>
+
+            <!-- Post em Destaque -->
+            <div class="featured-post" data-aos="zoom-in">
+                <div class="featured-img">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="featured-content">
+                    <span class="category">Destaque</span>
+                    <h2>A Revolução da Computação Quântica em 2026</h2>
+                    <p>Como os novos processadores quânticos estão mudando a criptografia e o processamento de dados em larga escala...</p>
+                    <a href="#" class="read-more">Ler artigo completo <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Grid de Artigos -->
+            <div class="blog-grid">
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-img-placeholder"><i class="fas fa-rocket"></i></div>
+                    <div class="blog-content">
+                        <span class="category">Tecnologia</span>
+                        <h3>O futuro do desenvolvimento Web em 2026</h3>
+                        <p>Descubra as tendências que estão moldando a forma como construímos aplicações modernas...</p>
+                        <a href="futuro-web-2026.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-img-placeholder"><i class="fas fa-bolt"></i></div>
+                    <div class="blog-content">
+                        <span class="category">Dicas</span>
+                        <h3>Por que a performance do seu site importa?</h3>
+                        <p>Entenda como a velocidade de carregamento influencia diretamente na conversão de clientes...</p>
+                        <a href="performance-importancia.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-img-placeholder"><i class="fas fa-shield-halved"></i></div>
+                    <div class="blog-content">
+                        <span class="category">Segurança</span>
+                        <h3>Boas práticas de segurança em sistemas Web</h3>
+                        <p>Proteja os dados da sua empresa e dos seus clientes com estas dicas fundamentais...</p>
+                        <a href="seguranca-sistemas-web.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-img-placeholder" style="background: #1a1a2e;"><i class="fas fa-newspaper"></i></div>
+                    <div class="blog-content">
+                        <span class="category">Notícias</span>
+                        <h3>Meilin Tech expande operações para o mercado internacional</h3>
+                        <p>Nossa equipe celebra a abertura de novos projetos na Europa e América do Norte...</p>
+                        <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-img-placeholder" style="background: #16213e;"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="blog-content">
+                        <span class="category">Tecnologia</span>
+                        <h3>Mobile-First: A prioridade absoluta em 2026</h3>
+                        <p>Por que o design para dispositivos móveis deixou de ser uma opção e virou regra de ouro...</p>
+                        <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-img-placeholder" style="background: #0f3460;"><i class="fas fa-brain"></i></div>
+                    <div class="blog-content">
+                        <span class="category">Dicas</span>
+                        <h3>IA no dia a dia do desenvolvedor</h3>
+                        <p>Como ferramentas de inteligência artificial estão aumentando a produtividade das equipes...</p>
+                        <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-info">
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="Meilin Tech Logo">
+                    <span>MEILIN <strong>TECH</strong></span>
+                </div>
+                <p>Soluções inteligentes para um mundo digital.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#sobre">Sobre</a></li>
+                    <li><a href="../index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Siga-nos</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Meilin Tech. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>
