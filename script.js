@@ -1,70 +1,63 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Menu Mobile
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    const header = document.getElementById('header');
+const header = document.getElementById("header");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+const year = document.getElementById("year");
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
 
-    mobileMenu.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenu.classList.toggle('toggle');
-    });
+year.textContent = new Date().getFullYear();
 
-    // Fechar menu ao clicar em um link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            mobileMenu.classList.remove('toggle');
-        });
-    });
+window.addEventListener("scroll", () => {
+  header.classList.toggle("scrolled", window.scrollY > 20);
+}, { passive: true });
 
-    // Efeito de scroll no header
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.padding = '10px 0';
-            header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
-        } else {
-            header.style.padding = '15px 0';
-            header.style.boxShadow = 'none';
-        }
-    });
+menuToggle.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+});
 
-    // Animação simples de entrada para os cards de serviço
-    const observerOptions = {
-        threshold: 0.1
-    };
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // As animações agora são controladas pelo AOS, mas mantemos o observer para efeitos extras se necessário
-    // document.querySelectorAll('.service-card, .blog-card').forEach(card => {
-    //     observer.observe(card);
-    // });
-
-    // Simulação de envio de formulário
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Enviando...';
-            btn.disabled = true;
-
-            // Simula um delay de rede
-            setTimeout(() => {
-                alert('Obrigado pelo contato! Sua mensagem foi enviada com sucesso (simulação).');
-                contactForm.reset();
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }, 1500);
-        });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
     }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach((element) => {
+  observer.observe(element);
+});
+
+contactForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    formStatus.textContent = "Preencha todos os campos.";
+    return;
+  }
+
+  formStatus.textContent =
+    "Mensagem preparada. Configure o destino do formulário no JavaScript para receber contatos.";
+
+  // Exemplo de integração futura:
+  // const subject = encodeURIComponent(`Novo contato — Soral Tech — ${name}`);
+  // const body = encodeURIComponent(
+  //   `Nome: ${name}\nE-mail: ${email}\n\nProjeto:\n${message}`
+  // );
+  // window.location.href =
+  //   `mailto:contato@soraltech.com.br?subject=${subject}&body=${body}`;
+
+  contactForm.reset();
 });
