@@ -49,7 +49,7 @@ contactForm.addEventListener("submit", (event) => {
   }
 
   formStatus.textContent =
-    "Mensagem preparada. Configure o destino do formulário no JavaScript para receber contatos.";
+    "Mensagem preparada";
 
   // Exemplo de integração futura:
   // const subject = encodeURIComponent(`Novo contato — Soral Tech — ${name}`);
