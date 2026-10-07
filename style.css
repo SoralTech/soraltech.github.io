@@ -190,3 +190,42 @@ h2 { font-size:clamp(37px,4.5vw,58px); line-height:1.05; letter-spacing:-2.5px; 
   .about-logo { animation: none; transition: none; }
   .about-logo:hover { scale: none; rotate: none; }
 }
+
+/* Native horizontal scrolling keeps vertical page scrolling available. */
+.process-swipe-hint { display: none; }
+.process-line:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; }
+@media (max-width: 680px) {
+  .hero-visual, .about-visual { display: none; }
+  .about-grid { gap: 0; }
+  .process-swipe-hint {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 18px;
+  }
+  .process-line {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 4px 0 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple) var(--bg-soft);
+  }
+  .process-line .process-step {
+    flex: 0 0 85%;
+    min-width: 0;
+    padding: 24px 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    scroll-snap-align: start;
+  }
+  .process-line .process-step.reveal.reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .process-step .step-icon { margin-top: 24px; }
+  .process-step p { font-size: 14px; color: var(--muted); }
+}
