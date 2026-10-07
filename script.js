@@ -40,24 +40,39 @@ contactForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
+  const company = document.getElementById("company").value.trim();
   const message = document.getElementById("message").value.trim();
 
-  if (!name || !email || !message) {
-    formStatus.textContent = "Preencha todos os campos.";
+  if (!name || !message) {
+    formStatus.textContent = "Preencha seu nome e conte sobre o projeto.";
     return;
   }
 
-  formStatus.textContent =
-    "Mensagem preparada";
+  const text = [
+    "Olá, Soral Tech! Gostaria de conversar sobre um projeto.",
+    "",
+    `Nome: ${name}`,
+    ...(company ? [`Empresa: ${company}`] : []),
+    "",
+    "O que preciso desenvolver:",
+    message
+  ].join("\n");
 
-  // Exemplo de integração futura:
-  // const subject = encodeURIComponent(`Novo contato — Soral Tech — ${name}`);
-  // const body = encodeURIComponent(
-  //   `Nome: ${name}\nE-mail: ${email}\n\nProjeto:\n${message}`
-  // );
-  // window.location.href =
-  //   `mailto:contato@soraltech.com.br?subject=${subject}&body=${body}`;
+  window.location.href = `https://wa.me/5516988585497?text=${encodeURIComponent(text)}`;
 
-  contactForm.reset();
 });
+
+const whatsappButton = document.getElementById("whatsappButton");
+
+const updateWhatsappVisibility = () => {
+  const visible = window.scrollY > 20;
+  whatsappButton.classList.toggle("is-visible", visible);
+  whatsappButton.setAttribute("aria-hidden", String(!visible));
+  whatsappButton.tabIndex = visible ? 0 : -1;
+  whatsappButton.inert = !visible;
+};
+
+window.addEventListener("scroll", updateWhatsappVisibility, { passive: true });
+window.addEventListener("resize", updateWhatsappVisibility);
+window.addEventListener("pageshow", updateWhatsappVisibility);
+updateWhatsappVisibility();
